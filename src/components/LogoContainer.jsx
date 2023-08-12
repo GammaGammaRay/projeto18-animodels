@@ -2,7 +2,7 @@ import React from "react"
 import { styled } from "styled-components"
 
 function Logo() {
-  return <LogoContainer>animodels</LogoContainer>
+  return <LogoContainer><img src="logo_animodels.svg"></img></LogoContainer>
 }
 
 const LogoContainer = styled.div`
@@ -18,9 +18,10 @@ const LogoContainer = styled.div`
   height: 150px;
   /* background-color: lightgreen; */
   img {
-    height: 70px;
+    height: 250px;
     position: relative;
     top: 5px;
+    fill: #8ca247;
   }
 `
 
