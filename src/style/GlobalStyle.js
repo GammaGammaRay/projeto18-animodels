@@ -1,11 +1,15 @@
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
+input::-webkit-input-placeholder {
+  font-family: inherit; 
+  font-size: inherit;
+}
     button {
         outline: none;
         border: none;
         border-radius: 5px;
-        background-color: rgb(120, 177, 89);
+        background-color: #adc857;
         font-size: 20px;
         color: #fff;
         cursor: pointer;
@@ -29,6 +33,11 @@ const GlobalStyle = createGlobalStyle`
             border: 2px solid #ffb6b6;
             margin: 0px;
         }
+    }
+    input::placeholder {
+        font-weight: 100;
+        font-style: italic;
+        color: #cfcfcfff;
     }
     form {
         display: flex;

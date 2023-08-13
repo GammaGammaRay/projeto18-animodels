@@ -11,11 +11,11 @@ const LogoContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   font-weight: 200;
   font-size: 40px;
   width: 100%;
-  height: 150px;
+  height: fit-content;
   /* background-color: lightgreen; */
   img {
     height: 250px;

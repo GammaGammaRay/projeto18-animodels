@@ -13,7 +13,7 @@ const PageContainer = styled.div`
 `
 const ContentContainer = styled.div`
   width: 80%;
-  height: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;

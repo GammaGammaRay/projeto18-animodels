@@ -43,7 +43,7 @@ const NavContainer = styled.div`
   height: 40px;
   top: 0px;
   left: 0px;
-
+  position: fixed;
   /* position: absolute; */
   z-index: 5;
 
@@ -52,7 +52,7 @@ const NavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: 1px 1px 6px 4px #00000024;
-  background-color: #8ca247;
+  background-color: #adc857;
 `
 
 const NavLeft = styled.div`
