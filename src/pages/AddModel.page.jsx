@@ -1,23 +1,33 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { styled } from "styled-components"
+import Swal from "sweetalert2"
+import axios from "axios"
 
 import { ContentContainer } from "../style/PageContainers"
 import { Form } from "../components/ui/Form.component"
 import Logo from "../components/LogoContainer"
+import { UserContext } from "../context/user.context"
 
 function NewModel() {
   const navigate = useNavigate()
-
+  const { auth, token } = useContext(UserContext)
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     animalName: "",
     description: "",
     hirePrice: "",
     photoMain: "",
-    contact: "",
-    available: "",
+    contact: auth[0].tel,
+    available: true,
+    authorId: auth[0].userId
   })
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}` 
+    }
+  };
 
   function handleChange(key, value) {
     setFormData((prevData) => ({
@@ -26,21 +36,14 @@ function NewModel() {
     }))
   }
 
-  const handleSignUp = async (e) => {
+  const handleNewModel = async (e) => {
     e.preventDefault()
     console.log(formData)
-    if (formData.confirmPassword !== formData.password) {
-      return Swal.fire({
-        title: `<span style=";font-size: 18px">Passwords do not match!</span>`,
-        width: 320,
-        confirmButtonColor: "#adc857",
-      })
-    }
     try {
       setIsLoading(true)
-      await axios.post(`${import.meta.env.VITE_API_URL}/signup`, formData)
+      await axios.post(`${import.meta.env.VITE_API_URL}/animals`, formData, config)
       Swal.fire({
-        title: `<span style=";font-size: 18px">Succesfully registered!</span>`,
+        title: `<span style=";font-size: 18px">Model Added!</span>`,
         width: 320,
         confirmButtonColor: "#adc857",
       })
@@ -74,7 +77,7 @@ function NewModel() {
         <Logo />
       </Link>
       <Form>
-        <form onSubmit={handleSignUp}>
+        <form onSubmit={handleNewModel}>
           <input
             type="text"
             placeholder="Model Name"
@@ -120,7 +123,7 @@ function NewModel() {
           </Checkbox>
 
           <button disabled={isLoading}>
-            {!isLoading ? "Register" : "Loading..."}
+            {!isLoading ? "Add New Model" : "Loading..."}
           </button>
         </form>
       </Form>
@@ -142,7 +145,7 @@ const Checkbox = styled.div`
   white-space: nowrap;
   /* align-items: center; */
   justify-content: start;
-  input{
+  input {
     width: 100%;
   }
 `
