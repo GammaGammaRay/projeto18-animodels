@@ -8,23 +8,9 @@ import Model from "./pages/Model.page.jsx"
 import NewModel from "./pages/AddModel.page.jsx"
 import Nav from "./components/Nav.jsx"
 import UserProvider, { UserContext } from "./context/user.context.jsx"
-import { useContext } from "react"
+import ManageModels from "./pages/ManageModels.page.jsx"
 
 function App() {
-  const { auth, login }= useContext(UserContext)
-  
-  const { token, name } = loginData
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-  useEffect(() => {
-    if (Object.keys(loginData).length > 0) {
-      localStorage.setItem("config", JSON.stringify(config))
-      localStorage.setItem("name", name)
-    }
-  }, [loginData])
 
   return (
     <UserProvider>
@@ -35,8 +21,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/model/:animalid" element={<Model />} />
+            <Route path="/animal/:id" element={<Model />} />
             <Route path="/newmodel" element={<NewModel />} />
+            <Route path="/managemodels" element={<ManageModels />} />
           </Routes>
         </BrowserRouter>
       </PageContainer>
