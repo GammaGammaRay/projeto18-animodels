@@ -9,7 +9,6 @@ import { Form } from "../components/ui/Form.component"
 import Logo from "../components/LogoContainer"
 import { UserContext } from "../context/user.context"
 
-
 function NewModel() {
   const navigate = useNavigate()
   const { auth, token } = useContext(UserContext)
@@ -118,24 +117,24 @@ function NewModel() {
             required
           ></input>
           <Checkbox>
-            Is this animal available?
             <input
               type="checkbox"
               placeholder="Available"
               disabled={isLoading}
               onChange={(e) => handleChange("available", e.target.checked)}
               value={formData.available}
-            ></input>
+              ></input>
+              <span>Is this animal available?</span>
           </Checkbox>
           <Checkbox>
-            Would you like your animal profile to be hidden?
             <input
               type="checkbox"
               placeholder="Hide"
               disabled={isLoading}
               onChange={(e) => handleChange("hide", !e.target.checked)}
               value={formData.hide}
-            ></input>
+              ></input>
+              <span>Would you like your animal profile to be hidden?</span>
           </Checkbox>
 
           <button disabled={isLoading}>
@@ -158,11 +157,13 @@ const Checkbox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  white-space: nowrap;
-  /* align-items: center; */
+  /* white-space: nowrap; */
   justify-content: start;
+  align-items: center;
   input {
-    width: 100%;
+    width: fit-content;
+    height: 24px; 
+    margin-right: 5px;
   }
 `
 
