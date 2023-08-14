@@ -6,6 +6,7 @@ import axios from "axios"
 import Logo from "../components/LogoContainer"
 import { Form } from "../components/ui/Form.component"
 import { ContentContainer } from "../style/PageContainers"
+import { styled } from "styled-components"
 
 function SignUp() {
   const navigate = useNavigate()
@@ -142,9 +143,20 @@ function SignUp() {
           </button>
         </form>
       </Form>
-      <p onClick={() => navigate("/signin")}>Already have an account?</p>
+      <StyledLink onClick={() => navigate("/signin")}>
+        Already have an account?
+      </StyledLink>
     </ContentContainer>
   )
 }
+
+const StyledLink = styled(Link)`
+  color: darkgray;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover{
+    color: white;
+  }
+`;
 
 export default SignUp

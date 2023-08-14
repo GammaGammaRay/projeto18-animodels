@@ -9,6 +9,7 @@ import { Form } from "../components/ui/Form.component"
 import Logo from "../components/LogoContainer"
 import { UserContext } from "../context/user.context"
 
+
 function NewModel() {
   const navigate = useNavigate()
   const { auth, token } = useContext(UserContext)
