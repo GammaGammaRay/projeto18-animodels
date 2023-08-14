@@ -1,28 +1,31 @@
 import React, { useContext, useEffect, useState } from "react"
 import { styled } from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { UserContext } from "../context/user.context.jsx"
 
 function Nav() {
-  const { auth, logout } = useContext(UserContext);
-  const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate()
+
+  const { auth, logout } = useContext(UserContext)
+  const [isLogged, setIsLogged] = useState(false)
   console.log(auth)
   const handleSignOut = (e) => {
-    e.preventDefault();
-    logout();
-  };
+    e.preventDefault()
+    navigate("/")
+    logout()
+  }
 
   useEffect(() => {
-    setIsLogged(auth.length > 0);
-  }, [auth]);
+    setIsLogged(auth.length > 0)
+  }, [auth])
 
   function SignOutLink() {
     return (
       <Link to="/" onClick={handleSignOut}>
         Signout
       </Link>
-    );
+    )
   }
 
   if (!isLogged) {
@@ -34,7 +37,7 @@ function Nav() {
           <StyledLink to={"/signup"}>Register</StyledLink>
         </NavRight>
       </NavContainer>
-    );
+    )
   } else {
     return (
       <NavContainer>
@@ -45,7 +48,7 @@ function Nav() {
           <SignOutLink />
         </NavRight>
       </NavContainer>
-    );
+    )
   }
 }
 
@@ -64,6 +67,23 @@ const NavContainer = styled.div`
   box-shadow: 1px 1px 6px 4px #00000024;
   background-color: #adc857;
   color: white;
+  a {
+    font-weight: 300;
+    width: fit-content;
+    margin-left: 10px;
+
+    text-decoration: none;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 768px) {
+    a{
+      font-size: 12px;
+      margin-left: 1px;
+      padding: 2px 5px;
+    }
+  }
 `
 
 const NavLeft = styled.div`
@@ -82,17 +102,6 @@ const NavRight = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  a {
-    font-weight: 300;
-    width: fit-content;
-    margin-left: 10px;
-    
-    text-decoration: none;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-  }
 `
 const StyledLink = styled(Link)`
   text-decoration: none;

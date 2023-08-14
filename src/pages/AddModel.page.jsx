@@ -19,17 +19,19 @@ function NewModel() {
     hirePrice: "",
     photoMain: "",
     contact: auth[0].tel,
-    available: true,
-    authorId: auth[0].userId
+    available: false,
+    authorId: auth[0].userId,
+    hide: false,
   })
 
   const config = {
     headers: {
-      Authorization: `Bearer ${token}` 
-    }
-  };
+      Authorization: `Bearer ${token}`,
+    },
+  }
 
   function handleChange(key, value) {
+    console.log("Form data: " + formData.hide)
     setFormData((prevData) => ({
       ...prevData,
       [key]: value,
@@ -38,10 +40,13 @@ function NewModel() {
 
   const handleNewModel = async (e) => {
     e.preventDefault()
-    console.log(formData)
     try {
       setIsLoading(true)
-      await axios.post(`${import.meta.env.VITE_API_URL}/animals`, formData, config)
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/animals`,
+        formData,
+        config
+      )
       Swal.fire({
         title: `<span style=";font-size: 18px">Model Added!</span>`,
         width: 320,
@@ -117,8 +122,18 @@ function NewModel() {
               type="checkbox"
               placeholder="Available"
               disabled={isLoading}
-              onChange={(e) => handleChange("available", e.target.value)}
+              onChange={(e) => handleChange("available", e.target.checked)}
               value={formData.available}
+            ></input>
+          </Checkbox>
+          <Checkbox>
+            Would you like your animal profile to be hidden?
+            <input
+              type="checkbox"
+              placeholder="Hide"
+              disabled={isLoading}
+              onChange={(e) => handleChange("hide", !e.target.checked)}
+              value={formData.hide}
             ></input>
           </Checkbox>
 

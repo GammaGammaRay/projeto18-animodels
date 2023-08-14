@@ -19,20 +19,8 @@ function SignIn() {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-  // const handleSignIn = async (e) => {
-  //   e.preventDefault()
 
-  //   try {
-  //     const res = await signIn(formData) // Assuming signIn is an asynchronous function
-  //     const { rows, token } = res.data // Extract data from the response
-  //     login({ rows, token }) // Call the login function with the extracted data
-  //     navigate("/")
-  //   } catch (error) {
-  //     console.error("Sign in error:", error.message)
-  //     // Handle sign-in error here
-  //   }
-  // }
-  
+
   const handleSignIn = (e) => {
     e.preventDefault()
 

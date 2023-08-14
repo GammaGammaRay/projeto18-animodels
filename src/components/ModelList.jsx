@@ -21,9 +21,11 @@ function ModelList() {
     console.log(animalList)
   }, [])
 
+  const visibleAnimalList = animalList.filter((animal) => !animal.hide)
+
   return (
     <ModelListContainer>
-      {animalList.map((animal) => (
+      {visibleAnimalList.map((animal) => (
         <ModelListItem key={animal.animalId} animal={animal} />
       ))}
     </ModelListContainer>
@@ -32,10 +34,13 @@ function ModelList() {
 
 const ModelListContainer = styled.div`
   width: 80%;
+  height: fit-content;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
+  overflow-y: auto;
+  margin-bottom: 150px;
 `
 // const ModelListContainer = styled.div``
 

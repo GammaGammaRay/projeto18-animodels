@@ -28,8 +28,8 @@ const ModelLinkContainer = styled(Link)`
   border: 1px;
   border-style: solid;
   border-color: darkgray;
-  margin-bottom: 10px;
   border-radius: 10px;
+  margin: 0px 5px 5px 5px;
   padding: 5px;
 
   display: flex;

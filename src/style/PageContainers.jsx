@@ -18,7 +18,9 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 80px;
-  /* background-color: green; */
+  @media screen and (max-width: 768px) {
+    margin-bottom: 200px;
+  }
 `
 
 export { PageContainer, ContentContainer }

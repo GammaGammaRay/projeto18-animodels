@@ -62,7 +62,7 @@ async function getAnimalList() {
 async function getAnimalById(id) {
   try {
     const response = await axios.get(`/animals/${id}`)
-    console.log(response.data)
+    // console.log("Response data: " + response.data)
     return response.data
   } catch (error) {
     throw error

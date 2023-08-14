@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom"
 export const UserContext = createContext()
 
 export default function UserProvider({ children }) {
-  // const persistedAuth = JSON.parse(localStorage.getItem("auth"))
+  const persistedAuth = JSON.parse(localStorage.getItem("auth")) || {};
 
-  const [auth, setAuth] = useState([])
+  const [auth, setAuth] = useState(persistedAuth)
   const [token, setToken] = useState("")
 
   function login(authData, token) {
@@ -24,7 +24,7 @@ export default function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ auth, token, login, logout }}>
+    <UserContext.Provider value={{ auth, setAuth, token, login, logout }}>
       {children}
     </UserContext.Provider>
   )

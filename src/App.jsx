@@ -9,8 +9,10 @@ import NewModel from "./pages/AddModel.page.jsx"
 import Nav from "./components/Nav.jsx"
 import UserProvider, { UserContext } from "./context/user.context.jsx"
 import ManageModels from "./pages/ManageModels.page.jsx"
+import { useContext, useEffect } from "react"
 
 function App() {
+  
 
   return (
     <UserProvider>
