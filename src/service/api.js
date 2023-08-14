@@ -1,12 +1,12 @@
-import axios from "axios";
-axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
+import axios from "axios"
+axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`
 
 function tokenProvider(auth) {
   return {
     headers: {
       Authorization: `Bearer ${auth}`,
     },
-  };
+  }
 }
 
 //User
@@ -15,47 +15,48 @@ function signIn(obj, success, failure) {
   axios
     .post("/signin", obj)
     .then((res) => {
-      success(res.data);
+      success(res.data)
     })
     .catch((error) => {
-      alert(error);
-      failure();
-    });
+      alert(error)
+      failure()
+    })
 }
 
 function signUp(obj, success, failure) {
   axios
     .post("/signup", obj)
     .then(() => {
-      success();
+      success()
     })
     .catch((error) => {
-      console.error(error);
-      failure();
-    });
+      console.error(error)
+      failure()
+    })
+}
+
+function getSession(auth) {
+
 }
 
 function signOut(auth, success) {
   axios
-  .delete("/signout", tokenProvider(auth))
-  .then(() => {
-    success();
-  })
-  .catch((error) => {
-    console.log(error.response.data);
-  });
-}
-
-function getAnimalList(success, failure) {
-  axios
-    .get("/animals")
+    .delete("/signout", tokenProvider(auth))
     .then(() => {
-      success();
+      success()
     })
     .catch((error) => {
-      console.error(error);
-      failure();
-    });
+      console.log(error.response.data)
+    })
 }
 
-export { signIn, signUp, signOut, getAnimalList };
+async function getAnimalList() {
+  try {
+    const response = await axios.get("/animals")
+    return response.data 
+  } catch (error) {
+    throw error 
+  }
+}
+
+export { signIn, signUp, signOut, getAnimalList }
