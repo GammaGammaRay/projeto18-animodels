@@ -4,7 +4,7 @@ import { styled } from "styled-components"
 import { getAnimalById } from "../service/api"
 import { useParams, Link } from "react-router-dom"
 import Logo from "../components/LogoContainer.jsx"
-import logo_animodels from "../../assets/logo_animodels.svg"
+import logo_animodels from "../assets/logo_animodels.svg";
 
 function Model() {
   const [animal, setAnimal] = useState(null)

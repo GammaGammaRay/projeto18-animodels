@@ -1,6 +1,6 @@
 import React from "react"
 import { styled } from "styled-components"
-import logo_animodels from "../assets/logo_animodels.svg"
+import logo_animodels from "../assets/logo_animodels.svg";
 
 function Logo() {
   return <LogoContainer><img src={logo_animodels}></img></LogoContainer>
