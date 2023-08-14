@@ -37,7 +37,13 @@ input::-webkit-input-placeholder {
             margin: 0px;
         }
     }
+    
     input::placeholder {
+        font-weight: 100;
+        font-style: italic;
+        color: #cfcfcfff;
+    }
+    textarea::placeholder {
         font-weight: 100;
         font-style: italic;
         color: #cfcfcfff;

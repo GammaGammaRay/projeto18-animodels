@@ -1,12 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 
-// import { UserContext } from "../contexts/UserContext"
-// import { api } from '../services/api.js'
+import { UserContext } from "../context/user.context.jsx"
 
 function Nav() {
-  // const { auth, userSignIn } = useContext(UserContext)
+  const { auth, userSignIn } = useContext(UserContext)
   return (
     <NavContainer>
       <NavLeft />
@@ -16,26 +15,7 @@ function Nav() {
       </NavRight>
     </NavContainer>
   )
-  // if(auth) {
-  //   return (
-  //     <NavContainer>
-  //       <NavLeft>
-  //         Olá, `${}`
-  //       </NavLeft>
-  //       <NavRight>
 
-  //       </NavRight>
-  //     </NavContainer>)
-  //   }
-  // else {
-  //   return (
-  //   <NavContainer>
-  //     <NavRight>
-  //       <Link to={'/signin'}>Entrar</Link>
-  //       <Link to={'/signup'}>Cadastrar</Link>
-  //     </NavRight>
-  //   </NavContainer>)
-  // }
 }
 
 const NavContainer = styled.div`

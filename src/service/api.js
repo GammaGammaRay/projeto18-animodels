@@ -11,10 +11,11 @@ function tokenProvider(auth) {
 
 //User
 
-function signIn(obj, success, failure) {
+function signIn(obj, login, success, failure) {
   axios
     .post("/signin", obj)
     .then((res) => {
+      login(res)
       success(res.data)
     })
     .catch((error) => {
@@ -35,9 +36,7 @@ function signUp(obj, success, failure) {
     })
 }
 
-function getSession(auth) {
-
-}
+function getSession(auth) {}
 
 function signOut(auth, success) {
   axios
@@ -53,9 +52,9 @@ function signOut(auth, success) {
 async function getAnimalList() {
   try {
     const response = await axios.get("/animals")
-    return response.data 
+    return response.data
   } catch (error) {
-    throw error 
+    throw error
   }
 }
 
