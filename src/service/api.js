@@ -18,10 +18,11 @@ function signIn(obj, success, failure) {
       success(res.data);
     })
     .catch((error) => {
-      alert(error.response.data);
+      alert(error);
       failure();
     });
 }
+
 function signUp(obj, success, failure) {
   axios
     .post("/signup", obj)
@@ -29,19 +30,32 @@ function signUp(obj, success, failure) {
       success();
     })
     .catch((error) => {
-      alert(error.response.data);
+      console.error(error);
       failure();
     });
 }
+
 function signOut(auth, success) {
   axios
-    .delete("/signout", tokenProvider(auth))
+  .delete("/signout", tokenProvider(auth))
+  .then(() => {
+    success();
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+}
+
+function getAnimalList(success, failure) {
+  axios
+    .get("/animals")
     .then(() => {
       success();
     })
     .catch((error) => {
-      console.log(error.response.data);
+      console.error(error);
+      failure();
     });
 }
 
-export { signIn, signUp, signOut };
+export { signIn, signUp, signOut, getAnimalList };

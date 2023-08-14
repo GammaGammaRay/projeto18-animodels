@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Swal from "sweetalert2"
 import axios from "axios"
 
@@ -73,7 +73,9 @@ function SignUp() {
 
   return (
     <ContentContainer>
-      <Logo />
+      <Link to={"/"}>
+        <Logo />
+      </Link>
       <UserRegistrationForm>
         <form onSubmit={handleSignUp}>
           <input

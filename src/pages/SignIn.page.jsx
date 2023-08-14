@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Logo from "../components/LogoContainer"
 import { ContentContainer } from "../style/PageContainers"
-import { UserRegistrationForm } from '../components/ui/UserRegistrationForm.component'
+import { UserRegistrationForm } from "../components/ui/UserRegistrationForm.component"
+import { signIn } from "../service/api"
 
 function SignIn() {
   const navigate = useNavigate()
@@ -20,17 +21,19 @@ function SignIn() {
     e.preventDefault()
     console.log(formData)
     function registerSuccess() {
-      console.log(formData)
+      // console.log(formData)
       navigate("/")
     }
 
     function registerFailure() {}
 
-    api.signUp(formData, registerSuccess, registerFailure)
+    signIn(formData, registerSuccess, registerFailure)
   }
   return (
     <ContentContainer>
-      <Logo />
+      <Link to={"/"}>
+        <Logo />
+      </Link>
       <UserRegistrationForm>
         <form onSubmit={handleSignIn}>
           <input
