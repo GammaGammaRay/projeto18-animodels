@@ -9,7 +9,7 @@ function tokenProvider(auth) {
   }
 }
 
-//User
+// USER
 
 function signIn(obj, login, success, failure) {
   axios
@@ -40,7 +40,7 @@ function getSession(auth) {}
 
 function signOut(auth, success) {
   axios
-    .delete("/signout", tokenProvider(auth))
+    .delete("/signin", tokenProvider(auth))
     .then(() => {
       success()
     })
@@ -48,6 +48,8 @@ function signOut(auth, success) {
       console.log(error.response.data)
     })
 }
+
+// ANIMALS
 
 async function getAnimalList() {
   try {
@@ -57,5 +59,14 @@ async function getAnimalList() {
     throw error
   }
 }
+async function getAnimalById(id) {
+  try {
+    const response = await axios.get(`/animals/${id}`)
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
 
-export { signIn, signUp, signOut, getAnimalList }
+export { signIn, signUp, signOut, getAnimalList, getAnimalById }

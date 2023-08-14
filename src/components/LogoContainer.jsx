@@ -2,7 +2,7 @@ import React from "react"
 import { styled } from "styled-components"
 
 function Logo() {
-  return <LogoContainer><img src="logo_animodels.svg"></img></LogoContainer>
+  return <LogoContainer><img src={"public/logo_animodels.svg"}></img></LogoContainer>
 }
 
 const LogoContainer = styled.div`
