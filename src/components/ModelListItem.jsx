@@ -23,9 +23,10 @@ function ModelListItem({ animal }) {
 
 const ModelListItemContainer = styled.div`
   width: 100%;
-  border: 2px;
-  border-style: outset;
-  border-color: black;
+
+  border: 1px;
+  border-style: solid;
+  border-color: darkgray;
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 5px;

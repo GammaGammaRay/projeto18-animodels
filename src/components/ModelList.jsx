@@ -11,6 +11,7 @@ function ModelList() {
     async function fetchAnimalList() {
       try {
         const fetchedAnimalList = await getAnimalList()
+        console.log(fetchedAnimalList)
         setAnimalList(fetchedAnimalList)
       } catch (error) {
         console.error("Error fetching animal list:", error.message)
