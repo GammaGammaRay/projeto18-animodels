@@ -9,7 +9,7 @@ import { UserContext } from "../context/user.context"
 function SignIn() {
   const navigate = useNavigate()
 
-  const {login} = useContext(UserContext)
+  const { login } = useContext(UserContext)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -19,13 +19,27 @@ function SignIn() {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+  // const handleSignIn = async (e) => {
+  //   e.preventDefault()
 
+  //   try {
+  //     const res = await signIn(formData) // Assuming signIn is an asynchronous function
+  //     const { rows, token } = res.data // Extract data from the response
+  //     login({ rows, token }) // Call the login function with the extracted data
+  //     navigate("/")
+  //   } catch (error) {
+  //     console.error("Sign in error:", error.message)
+  //     // Handle sign-in error here
+  //   }
+  // }
+  
   const handleSignIn = (e) => {
     e.preventDefault()
-    
+
     console.log(formData)
-    function registerSuccess() {
-      
+    function registerSuccess(res) {
+      const { rows, token } = res;
+      login(rows,token)
       navigate("/")
     }
 

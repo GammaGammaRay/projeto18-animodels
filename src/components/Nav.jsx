@@ -1,21 +1,52 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 
 import { UserContext } from "../context/user.context.jsx"
 
 function Nav() {
-  const { auth, userSignIn } = useContext(UserContext)
-  return (
-    <NavContainer>
-      <NavLeft />
-      <NavRight>
-        <StyledLink to={"/signin"}>Entrar</StyledLink>
-        <StyledLink to={"/signup"}>Cadastrar</StyledLink>
-      </NavRight>
-    </NavContainer>
-  )
+  const { auth, logout } = useContext(UserContext);
+  const [isLogged, setIsLogged] = useState(false);
+  console.log(auth)
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    logout();
+  };
 
+  useEffect(() => {
+    setIsLogged(auth.length > 0);
+  }, [auth]);
+
+  function SignOutLink() {
+    return (
+      <Link to="/" onClick={handleSignOut}>
+        Signout
+      </Link>
+    );
+  }
+
+  if (!isLogged) {
+    return (
+      <NavContainer>
+        <NavLeft />
+        <NavRight>
+          <StyledLink to={"/signin"}>Login</StyledLink>
+          <StyledLink to={"/signup"}>Register</StyledLink>
+        </NavRight>
+      </NavContainer>
+    );
+  } else {
+    return (
+      <NavContainer>
+        <NavLeft>Hello, {auth[0]?.userName}</NavLeft>
+        <NavRight>
+          <StyledLink to={"/managemodels"}>Manage Models</StyledLink>
+          <StyledLink to={"/newmodel"}>New Model</StyledLink>
+          <SignOutLink />
+        </NavRight>
+      </NavContainer>
+    );
+  }
 }
 
 const NavContainer = styled.div`
@@ -24,7 +55,6 @@ const NavContainer = styled.div`
   top: 0px;
   left: 0px;
   position: fixed;
-  /* position: absolute; */
   z-index: 5;
 
   display: flex;
@@ -33,11 +63,13 @@ const NavContainer = styled.div`
   align-items: center;
   box-shadow: 1px 1px 6px 4px #00000024;
   background-color: #adc857;
+  color: white;
 `
 
 const NavLeft = styled.div`
   width: fit-content;
   left: 0;
+  margin-left: 8px;
   flex-direction: row;
   justify-content: start;
 `
@@ -55,8 +87,11 @@ const NavRight = styled.div`
     font-weight: 300;
     width: fit-content;
     margin-left: 10px;
-    color: white;
-
+    
+    text-decoration: none;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
   }
 `
 const StyledLink = styled(Link)`
@@ -65,4 +100,5 @@ const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
 `
+
 export default Nav
