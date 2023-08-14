@@ -43,7 +43,7 @@ function Nav() {
       <NavContainer>
         <NavLeft>Hello, {auth[0]?.userName}</NavLeft>
         <NavRight>
-          <StyledLink to={"/managemodels"}>Manage Models</StyledLink>
+          {/* <StyledLink to={"/managemodels"}>Manage Models</StyledLink> */}
           <StyledLink to={"/newmodel"}>New Model</StyledLink>
           <SignOutLink />
         </NavRight>
