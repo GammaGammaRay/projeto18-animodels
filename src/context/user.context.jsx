@@ -4,27 +4,19 @@ import { useNavigate } from "react-router-dom"
 export const UserContext = createContext()
 
 export default function UserProvider({ children }) {
-  const persistedAuth = JSON.parse(localStorage.getItem("auth"))
-  const persistedHires = JSON.parse(localStorage.getItem("hires"))
+  // const persistedAuth = JSON.parse(localStorage.getItem("auth"))
 
-  const [auth, setAuth] = useState(persistedAuth)
-  const [hires, setHires] = useState(persistedHires)
+  const [auth, setAuth] = useState()
 
   function login(authData) {
     setAuth(authData)
-    localStorage.setItem("auth", JSON.stringify(authData))
+    localStorage.setItem("auth", JSON.stringify(authData)) // Convert to JSON string
   }
 
-  // function updateHires(hireData) {
-  //   setSubscription(hireData)
-  //   localStorage.setItem("hires", JSON.stringify(hires))
-  // }
-
   return (
-    <UserContext.Provider
-      value={{ auth, setAuth, hires, setHires, login, updateHires }}
-    >
+    <UserContext.Provider value={{ auth, login }}>
       {children}
     </UserContext.Provider>
   )
 }
+

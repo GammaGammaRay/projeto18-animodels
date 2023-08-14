@@ -4,7 +4,7 @@ import Swal from "sweetalert2"
 import axios from "axios"
 
 import Logo from "../components/LogoContainer"
-import { UserRegistrationForm } from "../components/ui/UserRegistrationForm.component"
+import { Form } from "../components/ui/Form.component"
 import { ContentContainer } from "../style/PageContainers"
 
 function SignUp() {
@@ -35,7 +35,7 @@ function SignUp() {
       return Swal.fire({
         title: `<span style=";font-size: 18px">Passwords do not match!</span>`,
         width: 320,
-        confirmButtonColor: "#5dbb63",
+        confirmButtonColor: "#adc857",
       })
     }
     try {
@@ -44,7 +44,7 @@ function SignUp() {
       Swal.fire({
         title: `<span style=";font-size: 18px">Succesfully registered!</span>`,
         width: 320,
-        confirmButtonColor: "#5dbb63",
+        confirmButtonColor: "#adc857",
       })
       navigate("/")
     } catch (error) {
@@ -58,14 +58,14 @@ function SignUp() {
         Swal.fire({
           title: `<span style=";font-size: 18px">${status} ${statusText}\n${message}</span>`,
           width: 320,
-          confirmButtonColor: "#5dbb63",
+          confirmButtonColor: "#adc857",
         })
       } else {
         setIsLoading(false)
         Swal.fire({
           title: `<span style=";font-size: 18px">An error occurred: ${error.message}</span>`,
           width: 320,
-          confirmButtonColor: "#5dbb63",
+          confirmButtonColor: "#adc857",
         })
       }
     }
@@ -76,7 +76,7 @@ function SignUp() {
       <Link to={"/"}>
         <Logo />
       </Link>
-      <UserRegistrationForm>
+      <Form>
         <form onSubmit={handleSignUp}>
           <input
             type="text"
@@ -141,9 +141,8 @@ function SignUp() {
             {!isLoading ? "Register" : "Loading..."}
           </button>
         </form>
-      </UserRegistrationForm>
+      </Form>
       <p onClick={() => navigate("/signin")}>Already have an account?</p>
-      {/* <div onClick={() => navigate('/')}>Would you like<br/>to browse the catalog</div> */}
     </ContentContainer>
   )
 }

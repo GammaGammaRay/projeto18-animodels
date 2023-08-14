@@ -1,12 +1,15 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import Logo from "../components/LogoContainer"
 import { ContentContainer } from "../style/PageContainers"
-import { UserRegistrationForm } from "../components/ui/UserRegistrationForm.component"
+import { Form } from "../components/ui/Form.component"
 import { signIn } from "../service/api"
+import { UserContext } from "../context/user.context"
 
 function SignIn() {
   const navigate = useNavigate()
+
+  const {login} = useContext(UserContext)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -19,22 +22,23 @@ function SignIn() {
 
   const handleSignIn = (e) => {
     e.preventDefault()
+    
     console.log(formData)
     function registerSuccess() {
-      // console.log(formData)
+      
       navigate("/")
     }
 
     function registerFailure() {}
 
-    signIn(formData, registerSuccess, registerFailure)
+    signIn(formData, login, registerSuccess, registerFailure)
   }
   return (
     <ContentContainer>
       <Link to={"/"}>
         <Logo />
       </Link>
-      <UserRegistrationForm>
+      <Form>
         <form onSubmit={handleSignIn}>
           <input
             placeholder="E-mail"
@@ -55,7 +59,7 @@ function SignIn() {
 
           <button type="submit">Entrar</button>
         </form>
-      </UserRegistrationForm>
+      </Form>
     </ContentContainer>
   )
 }
