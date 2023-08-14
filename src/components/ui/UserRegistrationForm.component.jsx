@@ -12,5 +12,5 @@ export const UserRegistrationForm = styled.div`
     font-weight: 400;
     letter-spacing: 0.1em;
   }
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `
